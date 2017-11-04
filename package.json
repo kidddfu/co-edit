@@ -1,0 +1,28 @@
+{
+  "name": "co-edit",
+  "version": "1.0.0",
+  "description": "A Demo of node.js & socket.io",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kidddfu/co-edit.git"
+  },
+  "keywords": [
+    "node.js",
+    "socket.io"
+  ],
+  "author": "kidddfu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kidddfu/co-edit/issues"
+  },
+  "homepage": "https://github.com/kidddfu/co-edit#readme",
+  "dependencies": {
+    "express": "^4.16.2",
+    "jade": "^1.11.0",
+    "socket.io": "^2.0.4"
+  }
+}

@@ -1,0 +1,41 @@
+doctype
+head
+    meta(charset="utf-8")
+    title #{title}
+    script(src="http://code.jquery.com/jquery-3.2.1.js")
+    script(src="/socket.io/socket.io.js")
+
+// 使用了codemirror编辑器，codemirror begin
+link(rel='stylesheet', href='http://codemirror.net/lib/codemirror.css')
+link(rel="stylesheet", href="http://codemirror.net/theme/ambiance.css")
+script(src='http://codemirror.net/lib/codemirror.js')
+script(src="http://codemirror.net/addon/mode/overlay.js")
+script(src="http://codemirror.net/mode/markdown/markdown.js")
+// codemirror end
+
+body
+
+    textarea#textbox
+
+    script.
+        var editor = CodeMirror.fromTextArea(document.getElementById("textbox"), {
+            mode: 'markdown',
+            lineNumbers: true,
+            theme: "ambiance"
+        });
+
+    script.
+        var socket = io("localhost:3000");
+
+        socket.on('refresh', function(data){
+            editor.setValue(data.body);
+        });
+
+        editor.on('change', function(i, op){
+            socket.emit('change', op);
+        });
+
+        socket.on('change', function(data){
+            console.log(data);
+        editor.replaceRange(data.text, data.from, data.to);
+        });
